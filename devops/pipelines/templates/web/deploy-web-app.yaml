@@ -1,0 +1,17 @@
+parameters:
+  appName: ""
+  azureSubscription: ""
+  workingDirectory: ""
+
+steps:
+  - bash: |
+      npm run build
+    displayName: Build app
+    workingDirectory: ${{ parameters.workingDirectory }}
+
+  - task: AzureWebApp@1
+    inputs:
+      appType: webApp
+      azureSubscription: ${{ parameters.azureSubscription }}
+      appName: ${{ parameters.appName }}
+      package: "${{ parameters.workingDirectory }}/build"

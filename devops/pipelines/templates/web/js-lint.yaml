@@ -1,0 +1,14 @@
+parameters:
+  workingDirectory: ""
+  nodeVersion: ""
+
+steps:
+  - template: node-setup.yaml
+    parameters:
+      workingDirectory: ${{ parameters.workingDirectory }}
+      nodeVersion: ${{ parameters.nodeVersion }}
+
+  - bash: |
+      npm run lint
+    displayName: "Run eslint"
+    workingDirectory: ${{ parameters.workingDirectory }}

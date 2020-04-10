@@ -1,0 +1,14 @@
+parameters:
+  workingDirectory: ""
+  nodeVersion: ""
+
+steps:
+  - task: NodeTool@0
+    displayName: "Use Node ${{ parameters.nodeVersion }}"
+    inputs:
+      versionSpec: ${{ parameters.nodeVersion }}
+
+  - bash: |
+      npm ci
+    displayName: Install app dependencies
+    workingDirectory: ${{ parameters.workingDirectory }}

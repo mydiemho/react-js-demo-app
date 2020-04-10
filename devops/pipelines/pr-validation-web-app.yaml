@@ -1,0 +1,56 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+variables:
+  workingDirectory: "src/"
+  nodeVersion: "10.x"
+  verbose: "false" # set to true if you want to debug cypress
+
+stages:
+  - stage: "Testing"
+    jobs:
+      - job: Test
+        displayName: "Run Tests"
+
+        pool:
+          vmImage: macOS-latest
+
+        strategy:
+          matrix:
+            chrome:
+              browser: "chrome"
+            firefox:
+              browser: "firefox"
+            edge:
+              browser: "edge"
+            electron:
+              browser: "electron"
+
+        steps:
+          - template: templates/web/cypress.yaml
+
+  - stage: "JS Linting"
+    dependsOn: []
+    jobs:
+      - job: Lint
+        strategy:
+          matrix:
+            macOS:
+              vmImage: "macOS-latest"
+            windows:
+              vmImage: "windows-latest"
+            linux:
+              vmImage: "ubuntu-latest"
+
+        pool:
+          vmImage: $(vmImage)
+
+        steps:
+          - template: templates/web/js-lint.yaml
+            parameters:
+              workingDirectory: $(workingDirectory)
+              nodeVersion: $(nodeVersion)

@@ -1,0 +1,39 @@
+steps:
+  - template: node-setup.yaml
+    parameters:
+      workingDirectory: $(workingDirectory)
+      nodeVersion: "10.x"
+
+  - bash: |
+      npm run cy:verify
+    displayName: "Verify cypress"
+    workingDirectory: $(workingDirectory)
+
+  - bash: |
+      export DISPLAY=:99
+      if [ "$VERBOSE" == "true" ]
+      then
+        export DEBUG="cypress:*"
+      fi
+
+      npm run test:$(browser)
+    displayName: "Run cypress"
+    workingDirectory: $(workingDirectory)
+    env:
+      TERM: "xterm"
+      VERBOSE: $(verbose)
+
+  - task: PublishTestResults@2
+    displayName: "Publish the test reports"
+    inputs:
+      testResultsFiles: "**/reports/junit*.xml"
+    condition: succeededOrFailed()
+    continueOnError: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish screenshots when there are issues"
+    inputs:
+      pathtoPublish: "cypress/screenshots"
+      artifactName: screenshots-$(browser)
+    condition: failed()
+    continueOnError: true

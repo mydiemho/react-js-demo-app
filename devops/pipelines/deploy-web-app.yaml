@@ -1,0 +1,38 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - src/
+      - devops/pipelines/deploy-web-app.yaml
+      - deploy/pipelines/templates/web/*
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  - workingDirectory: "src/"
+    azureSubscription: "sample-connection" # create a service connection in AzDO and name it `sample-connection`
+    appName: "my-sample-app-0409"
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+steps:
+  - template: templates/web/node-setup.yaml
+    parameters:
+      workingDirectory: $(workingDirectory)
+      nodeVersion: "10.x"
+
+  - template: templates/web/deploy-web-app.yaml
+    parameters:
+      workingDirectory: $(workingDirectory)
+      azureSubscription: $(azureSubscription)
+      appName: $(appName)

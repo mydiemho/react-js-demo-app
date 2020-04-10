@@ -1,0 +1,24 @@
+{
+  "name": "react-js-demo-app",
+  "version": "1.0.0",
+  "description": "app to demo AzDO pipelines for running Cypress",
+  "author": {
+    "name": "My Ho"
+  },
+  "homepage": "https://github.com/mydiemho/react-js-demo-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx markdownlint '**/*.md' --config .markdownlint.json --ignore '**/node_modules/**' ",
+    "lint:fix": "npx markdownlint --fix '**/*.md' --config .markdownlint.json --ignore '**/node_modules/**' "
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jsonlint": "^1.6.3",
+    "markdownlint-cli": "^0.22.0"
+  },
+  "engines": {
+    "node": ">=10.19.0",
+    "npm": ">=6.13.4"
+  }
+}
