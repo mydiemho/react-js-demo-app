@@ -3,19 +3,19 @@ describe("My First Tests", () => {
     cy.visit("https://example.cypress.io");
   });
 
-  it('finds the content "type"', () => {
+  it("finds the content \"type\"", () => {
     cy.visit("https://example.cypress.io");
 
     cy.contains("type");
   });
 
-  it('clicks the link "type"', () => {
+  it("clicks the link \"type\"", () => {
     cy.visit("https://example.cypress.io");
 
     cy.contains("type").click();
   });
 
-  it('clicking "type" navigates to a new url', () => {
+  it("clicking \"type\" navigates to a new url", () => {
     cy.visit("https://example.cypress.io");
 
     cy.contains("type").click();

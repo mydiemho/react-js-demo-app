@@ -10,8 +10,14 @@ trigger:
   paths:
     include:
       - src/
+<<<<<<< HEAD
       - devops/pipelines/deploy-web-app.yaml
       - deploy/pipelines/templates/web/*
+=======
+      - devops/
+
+pr: none
+>>>>>>> chore: fix pipelines & add documentation
 
 pool:
   vmImage: "ubuntu-latest"

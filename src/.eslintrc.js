@@ -1,43 +1,39 @@
 module.exports = {
   settings: {
     react: {
-      version: "detect"
-    }
+      version: "detect",
+    },
   },
   env: {
     browser: true,
-    es6: true
+    es6: true,
   },
   extends: [
     "plugin:react/recommended",
     "standard",
-    "plugin:cypress/recommended"
+    "plugin:cypress/recommended",
   ],
   globals: {
     Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    SharedArrayBuffer: "readonly",
   },
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: "module",
   },
-  plugins: [
-    "react"
-  ],
+  plugins: ["react"],
   rules: {
     "react/no-unescaped-entities": 0,
-    quotes: [
-      "error",
-      "double"
-    ]
+    quotes: ["error", "double"],
+    semi: [2, "always"], // require semicolon
   },
   ignorePatterns: [
     "node_modules/",
     "build/",
     "cypress/plugins",
-    "cypress/support"
-  ]
+    "cypress/support",
+  ],
 };
