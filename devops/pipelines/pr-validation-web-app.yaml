@@ -5,6 +5,9 @@
 
 trigger: none
 
+pr:
+  - master
+
 variables:
   workingDirectory: "src/"
   nodeVersion: "10.x"
@@ -33,7 +36,7 @@ stages:
         steps:
           - template: templates/web/cypress.yaml
 
-  - stage: "JS Linting"
+  - stage: "JSLinting"
     dependsOn: []
     jobs:
       - job: Lint

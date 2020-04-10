@@ -1,0 +1,41 @@
+name: $(Date:yyyyMMdd)$(Rev:.r) # build numbering format
+
+trigger: none
+
+pr:
+  - master
+
+variables:
+  workingDirectory: "."
+
+jobs:
+  - job: Linting
+
+    strategy:
+      matrix:
+        macOS:
+          vmImage: "macOS-latest"
+        windows:
+          vmImage: "windows-latest"
+        ubuntu:
+          vmImage: "ubuntu-latest"
+
+    pool:
+      vmImage: $(vmImage)
+
+    steps:
+      - task: NodeTool@0
+        inputs:
+          checkLatest: true
+          versionSpec: 10.x
+        displayName: "Use Node 10.x"
+
+      - bash: |
+          npm ci
+        displayName: "Install dependencies"
+        workingDirectory: $(workingDirectory)
+
+      - bash: |
+          npm run lint
+        displayName: "Linting markdown files"
+        workingDirectory: $(workingDirectory)
