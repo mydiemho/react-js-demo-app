@@ -1,0 +1,73 @@
+{
+  "name": "my-sample-app",
+  "author": {
+    "name": "My Ho"
+  },
+  "homepage": "https://github.com/mydiemho/react-js-demo-app",
+  "version": "0.1.0",
+  "private": false,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "cypress": "^4.3.0",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "start-server-and-test": "^1.10.11"
+  },
+  "scripts": {
+    "start": "cross-env PORT=3000 react-scripts start",
+    "build": "react-scripts build",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint --fix .",
+    "cy:open": "npx cypress open",
+    "cy:run": "npx cypress run --browser ",
+    "cy:run:chrome": "npm run cy:run -- chrome",
+    "cy:run:edge": "npm run cy:run -- edge",
+    "cy:run:firefox": "npm run cy:run -- firefox",
+    "cy:run:electron": "npm run cy:run -- electron",
+    "cy:run:safari": "npm run cy:run-- safari",
+    "cy:run:debug": "npm run cy:run -- chrome --headed --no-exit",
+    "cy:verify": "npx cypress verify",
+    "test": "start-server-and-test start 3000 ",
+    "test:edge": "npm run test -- cy:run:edge",
+    "test:chrome": "npm run test -- cy:run:chrome",
+    "test:firefox": "npm run test -- cy:run:firefox",
+    "test:electron": "npm run test -- cy:run:electron",
+    "test:safari": "npm run test -- cy:run:safari",
+    "test:debug": "npm run test -- cy:run:debug",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.19.0",
+    "npm": ">=6.4.1"
+  }
+}
